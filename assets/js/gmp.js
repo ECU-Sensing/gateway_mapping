@@ -8,6 +8,14 @@ const ecu_info = {
   loc: { lat: 35.605124, lng:  -77.365271 },
 }
 
+const radius_ends = [
+  {lat: 35.60855615619757, lng: -77.4544474813303},
+  {lat: 35.668163669922414, lng: -77.36070306157437},
+  {lat: 35.62540094340262, lng: -77.27106859443909},
+  {lat: 35.63331262555025, lng: -77.44332525325625},
+  {lat: 35.54472424916784, lng: -77.32327496142294},
+  {lat: 35.545720762111294, lng:  -77.41129709612821}
+]
 // Implementation Status (0-3)
 // 0. Planned
 // 1. Planned (Switch to In-progress when color is identified)
@@ -263,19 +271,6 @@ function initMap() {
     radius: 804.672
 });
 
-
-    for(item in esdn_map){
-        const radiusLine = new google.maps.Polyline({
-            path:[states[esdn_map[item].loc], ],
-            geodesic: true,
-            strokeColor: states[esdn_map[item].status].color,
-            strokeOpacity: 0.75,
-            strokeWeight: 2
-        });
-
-        radiusLine.setMap(map);
-    }
-
     coverage_circle5.addListener("mouseover", () =>{
       const content =  '<strong><u>' + esdn_map[point].name + '</strong></u>' + '<br>Status: '+ states[esdn_map[point].status].text + '<br>Latitude: ' + esdn_map[point].loc.lat + '<br>Longitude: ' + esdn_map[point].loc.lng ;
       infoWindow.setContent(content);
@@ -295,6 +290,17 @@ function initMap() {
     markers.push(marker);
   };
   
+  for(let x = 0; x < radius_ends.length; x++){
+    const radiusLine = new google.maps.Polyline({
+        path:[esdn_map['scitech'].loc, radius_ends[x]],
+        geodesic: true,
+        strokeColor: "#000205",
+        strokeOpacity: 0.75,
+        strokeWeight: 2
+    });
+
+    radiusLine.setMap(map);
+  }
   // Batch Marker manager
   new MarkerClusterer({markers,map})
 }
