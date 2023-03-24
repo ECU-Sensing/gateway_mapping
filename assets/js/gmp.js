@@ -169,11 +169,12 @@ function initMap() {
     zoom: 14,
     center: esdn_map.scitech.loc,
     zoomControl: true,
-    mapTypeControl: false,
+    mapTypeControl: true,
     scaleControl: true,
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
+    
   });
 
   // Default InfoWindow for each Marker
