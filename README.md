@@ -1,1 +1,2 @@
-# gateway_mapping
+# Gateway Mapping
+Gateway map for mapping activity
